@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+
+  application:
+    name: tw-user
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/transportWala
+    username: postgres
+    password: Kshitiz@1710
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:9000/eureka

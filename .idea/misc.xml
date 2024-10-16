@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/tw-user/tw-user/pom.xml" />
+        <option value="$PROJECT_DIR$/tw-driver/tw-driver/pom.xml" />
+        <option value="$PROJECT_DIR$/tw-pricing/tw-pricing/pom.xml" />
+        <option value="$PROJECT_DIR$/tw-bookings/tw-bookings/pom.xml" />
+        <option value="$PROJECT_DIR$/tw-matching/tw-matching/pom.xml" />
+        <option value="$PROJECT_DIR$/tw-serviceRegistry/tw-serviceRegistry/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="corretto-21" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

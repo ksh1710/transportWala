@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="tw-pricing" />
+        <module name="tw-user" />
+        <module name="tw-driver" />
+        <module name="tw-matching" />
+        <module name="tw-serviceRegistry" />
+        <module name="tw-bookings" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="tw-bookings" options="-parameters" />
+      <module name="tw-driver" options="-parameters" />
+      <module name="tw-matching" options="-parameters" />
+      <module name="tw-pricing" options="-parameters" />
+      <module name="tw-serviceRegistry" options="-parameters" />
+      <module name="tw-user" options="-parameters" />
+    </option>
+  </component>
+</project>

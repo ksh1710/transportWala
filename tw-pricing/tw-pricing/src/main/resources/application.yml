@@ -1,0 +1,17 @@
+server:
+  port: 8765
+
+spring:
+  application:
+    name: tw-pricing
+
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:9000/eureka
