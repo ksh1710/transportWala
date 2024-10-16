@@ -94,6 +94,6 @@ public class BookingsService {
         // Calculate the distance
         double distance = EARTH_RADIUS_KM * c;
         System.out.println("distance: " + distance);
-        return distance; // Distance in kilometers
+        return distance;
     }
 }
