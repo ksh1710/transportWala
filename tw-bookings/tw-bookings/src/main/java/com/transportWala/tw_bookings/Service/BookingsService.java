@@ -28,7 +28,7 @@ public class BookingsService {
     }
 
     public double createBooking(BookingRequestDTO bookingRequest) {
-        // Step 1: Prepare the price estimation request body
+
         PriceEstimateRequest priceEstimateRequest = new PriceEstimateRequest();
         priceEstimateRequest.setDistance(calculateDistance(
                 bookingRequest.getPickupLatitude(),
@@ -42,14 +42,12 @@ public class BookingsService {
         priceEstimateRequest.setState(bookingRequest.getState());
 
 
-        // Step 2: Call the Pricing Service via Eureka using RestTemplate
         PriceEstimateResponse priceResponse = restTemplate.postForObject(
                 "http://TW-PRICING/pricing/estimate",
                 priceEstimateRequest,
                 PriceEstimateResponse.class
         );
 
-        // Step 3: Save the booking details with the estimated price
 //        Bookings booking = new Bookings();
 //        booking.setPickupLocation(bookingRequest.getPickupLocation());
 //        booking.setDropoffLocation(bookingRequest.getDropoffLocation());
@@ -58,14 +56,12 @@ public class BookingsService {
 //        booking.setStatus("PENDING");
 //        booking = bookingRepository.save(booking);
 
-        // Step 4: Call Matching Service to assign a driver using Eureka
 //        restTemplate.postForObject(
 //                "http://matching-service/api/matching/assign-driver",
 //                bookingRequest,
 //                Void.class
 //        );
 
-        // Step 5: Return the booking response to the user
 //        return new BookingResponseDTO(
 //                booking.getId(),
 //                booking.getPickupLocation(),
@@ -91,7 +87,6 @@ public class BookingsService {
                         Math.sin(dLon / 2) * Math.sin(dLon / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-        // Calculate the distance
         double distance = EARTH_RADIUS_KM * c;
         System.out.println("distance: " + distance);
         return distance;
