@@ -2,6 +2,7 @@ package com.transportWala.tw_bookings.Controller;
 
 
 import com.transportWala.tw_bookings.Entity.BookingRequestDTO;
+import com.transportWala.tw_bookings.Entity.BookingResponseDTO;
 import com.transportWala.tw_bookings.Entity.Bookings;
 import com.transportWala.tw_bookings.Service.BookingsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class BookingsController {
     }
 
     @PostMapping("/create")
-    public double createBooking(@RequestBody BookingRequestDTO booking) {
-        return bookingsService.createBooking(booking);
+    public BookingResponseDTO createBooking(@RequestBody BookingRequestDTO booking) {
+        return bookingsService.createBookingRequest(booking);
     }
 }

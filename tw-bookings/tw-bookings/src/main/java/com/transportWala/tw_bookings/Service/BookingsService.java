@@ -8,6 +8,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 @Service
 public class BookingsService {
@@ -27,7 +29,7 @@ public class BookingsService {
         return bookingsRepository.findById(id).orElseThrow(() -> new RuntimeException("Driver not found"));
     }
 
-    public double createBooking(BookingRequestDTO bookingRequest) {
+    public BookingResponseDTO createBookingRequest(BookingRequestDTO bookingRequest) {
 
         PriceEstimateRequest priceEstimateRequest = new PriceEstimateRequest();
         priceEstimateRequest.setDistance(calculateDistance(
@@ -48,13 +50,13 @@ public class BookingsService {
                 PriceEstimateResponse.class
         );
 
-//        Bookings booking = new Bookings();
-//        booking.setPickupLocation(bookingRequest.getPickupLocation());
-//        booking.setDropoffLocation(bookingRequest.getDropoffLocation());
-//        booking.setVehicleType(bookingRequest.getVehicleType());
-//        booking.setEstimatedPrice(priceResponse.getEstimatedPrice());
-//        booking.setStatus("PENDING");
-//        booking = bookingRepository.save(booking);
+        BookingResponseDTO bookingRequestResponse = new BookingResponseDTO();
+        Long id = Math.abs(new Random().nextLong());
+        bookingRequestResponse.setBookingId(id);
+        System.out.println("id:" + id);
+        assert priceResponse != null;
+        bookingRequestResponse.setEstimatedPrice(priceResponse.getEstimatedPrice());
+        bookingRequestResponse.setStatus("PENDING");
 
 //        restTemplate.postForObject(
 //                "http://matching-service/api/matching/assign-driver",
@@ -69,8 +71,9 @@ public class BookingsService {
 //                booking.getEstimatedPrice(),
 //                booking.getStatus()
 //        );
-        assert priceResponse != null;
-        return priceResponse.getEstimatedPrice();
+//        assert priceResponse != null;
+//        return priceResponse.getEstimatedPrice();
+        return bookingRequestResponse;
     }
 
     private double calculateDistance(double pickupLatitude, double pickupLongitude, double dropoffLatitude, double dropoffLongitude) {

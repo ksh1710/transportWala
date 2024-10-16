@@ -14,5 +14,4 @@ public class BookingRequestDTO {
     private double dropoffLongitude;
     private String vehicleType;
     private String state;
-    // Getters and Setters
 }
