@@ -20,6 +20,7 @@ public class DriverService {
 
     private final RedisTemplate<String, Object> redisTemplate;
     private static final String DRIVER_LOCATIONS_KEY = "drivers-locations";
+    private static final String DRIVER_STATUS_KEY = "driver-status";
 
 
     @Autowired
@@ -41,11 +42,16 @@ public class DriverService {
     }
 
     public void updateDriverStatus(DriverStatusDTO statusDTO) {
-        redisTemplate.opsForHash().put("driver-status", statusDTO.getDriverId().toString(), statusDTO.getStatus());
+        redisTemplate.opsForHash().put(DRIVER_STATUS_KEY, statusDTO.getDriverId().toString(), statusDTO.getStatus());
     }
 
     public DriverStatusDTO getDriverStatus(Long id) {
-        return (DriverStatusDTO) redisTemplate.opsForHash().get("driver-status", id);
+        String status = (String) redisTemplate.opsForHash().get(DRIVER_STATUS_KEY, id.toString());
+        if (status != null) {
+            return new DriverStatusDTO(id, status);
+        } else {
+            throw new RuntimeException("Driver status not found for ID: " + id);
+        }
     }
 
     public void updateLocation(DriverLocationDTO locationDTO) {
