@@ -3,6 +3,7 @@ package com.transportWala.tw_driver.Controller;
 
 import com.transportWala.tw_driver.Entity.Driver;
 import com.transportWala.tw_driver.Entity.DriverLocationDTO;
+import com.transportWala.tw_driver.Entity.DriverStatusDTO;
 import com.transportWala.tw_driver.Service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,16 +32,24 @@ public class DriverController {
         return driverService.createDriver(driver);
     }
 
-    @PutMapping("/{id}/status")
-    public Driver updateDriverStatus(@PathVariable Long id, @RequestParam String status) {
-        return driverService.updateDriverStatus(id, status);
-    }
+//    @PutMapping("/{id}/status")
+//    public ResponseEntity<String> updateDriverStatus(@RequestBody DriverStatusDTO status) {
+//        driverService.updateDriverStatus(status);
+//        return ResponseEntity.ok("updated");
+//    }
 
 
     // Driver sends their location update
     @PostMapping("/location")
     public ResponseEntity<String> updateLocation(@RequestBody DriverLocationDTO locationDTO) {
         driverService.updateLocation(locationDTO);
+        return ResponseEntity.ok("Location updated successfully");
+    }
+
+    @PostMapping("/getLocation")
+    public ResponseEntity<String> getLocation(@RequestBody DriverLocationDTO location) {
+        DriverLocationDTO loc = driverService.getLocation(location.getDriverId());
+        System.out.println(loc.toString());
         return ResponseEntity.ok("Location updated successfully");
     }
 

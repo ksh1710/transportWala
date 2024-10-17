@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class DriverStatusDTO {
-    private String driverId;
+    private Long driverId;
     private String status;  // "available", "busy", "offline"
 }
