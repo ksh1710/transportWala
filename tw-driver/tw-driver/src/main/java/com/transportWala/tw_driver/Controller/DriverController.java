@@ -2,8 +2,10 @@ package com.transportWala.tw_driver.Controller;
 
 
 import com.transportWala.tw_driver.Entity.Driver;
+import com.transportWala.tw_driver.Entity.DriverLocationDTO;
 import com.transportWala.tw_driver.Service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,4 +37,19 @@ public class DriverController {
     }
 
 
+    // Driver sends their location update
+    @PostMapping("/location")
+    public ResponseEntity<String> updateLocation(@RequestBody DriverLocationDTO locationDTO) {
+        driverService.updateLocation(locationDTO);
+        return ResponseEntity.ok("Location updated successfully");
+    }
+
+    @PostMapping("/status")
+    public ResponseEntity<String> updateStatus(@RequestBody DriverStatusDTO statusDTO) {
+        driverService.updateDriverStatus(statusDTO);
+        return ResponseEntity.ok("Driver status updated successfully");
+    }
 }
+
+
+
