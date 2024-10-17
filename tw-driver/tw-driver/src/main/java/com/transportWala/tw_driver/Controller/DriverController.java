@@ -46,11 +46,11 @@ public class DriverController {
         return ResponseEntity.ok("Location updated successfully");
     }
 
-    @PostMapping("/getLocation")
-    public ResponseEntity<String> getLocation(@RequestBody DriverLocationDTO location) {
-        DriverLocationDTO loc = driverService.getLocation(location.getDriverId());
+    @PostMapping("/getLocation/{id}")
+    public ResponseEntity<String> getLocation(@PathVariable Long id) {
+        DriverLocationDTO loc = driverService.getLocation(id);
         System.out.println(loc.toString());
-        return ResponseEntity.ok("Location updated successfully");
+        return ResponseEntity.ok("Location fetched successfully");
     }
 
     @PostMapping("/status")
@@ -58,6 +58,14 @@ public class DriverController {
         driverService.updateDriverStatus(statusDTO);
         return ResponseEntity.ok("Driver status updated successfully");
     }
+
+    @GetMapping("/getStatus/{id}")
+    public ResponseEntity<String> getStatus(@PathVariable Long id) {
+        DriverStatusDTO status = driverService.getDriverStatus(id);
+        System.out.println(status.toString());
+        return ResponseEntity.ok("status fetched successfully");
+    }
+
 }
 
 

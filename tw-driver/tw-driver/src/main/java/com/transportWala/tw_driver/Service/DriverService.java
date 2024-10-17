@@ -40,18 +40,13 @@ public class DriverService {
         return driverRepository.save(driver);
     }
 
-    //    public Driver updateDriverStatus(DriverStatusDTO status) {
-//        Driver driver = getDriverById(status.getDriverId());
-//        driver.setStatus(status.getStatus());
-//        return driverRepository.save(driver);
-//    }
     public void updateDriverStatus(DriverStatusDTO statusDTO) {
         redisTemplate.opsForHash().put("driver-status", statusDTO.getDriverId().toString(), statusDTO.getStatus());
     }
 
-//    public void getDriverStatus(Long id) {
-//        redisTemplate.opsForHash().put("driver-status", statusDTO.getDriverId().toString(), statusDTO.getStatus());
-//    }
+    public DriverStatusDTO getDriverStatus(Long id) {
+        return (DriverStatusDTO) redisTemplate.opsForHash().get("driver-status", id);
+    }
 
     public void updateLocation(DriverLocationDTO locationDTO) {
         GeoOperations<String, Object> geoOperations = redisTemplate.opsForGeo();
